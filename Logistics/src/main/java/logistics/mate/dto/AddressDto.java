@@ -1,12 +1,10 @@
-package logistics.mate.model;
+package logistics.mate.dto;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-@Entity
-public class Address {
+public class AddressDto {
 	@javax.persistence.Id
 	@GeneratedValue
 	private long Id;
@@ -66,7 +64,7 @@ public class Address {
 	public void setLength(double Length) {
 		this.Length = Length;
 	}
-	public Address(long Id, String ISO, String City, String Street, String ZIP, String Number, double Width, double Length) {
+	public AddressDto(long Id, String ISO, String City, String Street, String ZIP, String Number, double Width, double Length) {
 		this.Id = Id;
 		this.ISO = ISO;
 		this.City = City;
