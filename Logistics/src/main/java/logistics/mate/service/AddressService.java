@@ -19,38 +19,38 @@ import javax.transaction.Transactional;
 
 public class AddressService {
 	@Autowired
-	AddressRepository AddressRepo;
+	AddressRepository addressRepo;
 	@Autowired
-	MilestoneService MilestoneServ;
+	MilestoneService milestoneServ;
 	public List<Address> AllAddress(){
-		return AddressRepo.findAll();
+		return addressRepo.findAll();
 	}
 	public Optional<Address> AddressId(long Id){
-		return AddressRepo.findById(Id);
+		return addressRepo.findById(Id);
 	}
 	@Transactional
 	public Address NewAddress(Address Address) {
-		return AddressRepo.save(Address);
+		return addressRepo.save(Address);
 	}
 	@Transactional
 	public void DeleteAddress(long Id) throws BadHttpRequest{
-		if (AddressRepo.findById(Id).isPresent()) {
-			if (!MilestoneServ.findByAddressId(Id).isEmpty()) {
+		if (addressRepo.findById(Id).isPresent()) {
+			if (!milestoneServ.findAddressId(Id).isEmpty()) {
 				throw new BadHttpRequest();
 			}
 		}
-		AddressRepo.deleteById(Id);
+		addressRepo.deleteById(Id);
 	}
 	@Transactional
-	public void deleteAll() {
-		AddressRepo.deleteAll();
+	public void DeleteAll() {
+		addressRepo.deleteAll();
 	}
 	@Transactional
 	public Address ChangeAddress(Address Address) {
-		if (!AddressRepo.existsById(Address.getId())) {
+		if (!addressRepo.existsById(Address.getId())) {
 			throw new EntityNotFoundException();
 		}
-		return AddressRepo.save(Address);
+		return addressRepo.save(Address);
 	}
 	public Page<Address> AddressExample(AddressExampleDto Example, Pageable Pageable){
 		String ISO = Example.getISO();
@@ -71,6 +71,6 @@ public class AddressService {
 		if (StringUtils.hasText(ZIP)) {
 			specification = specification.and(AddressSpecifications.hasZIP(ZIP));
 		}
-		return AddressRepo.findAll(specification, Pageable);
+		return addressRepo.findAll(specification, Pageable);
 	}
 }

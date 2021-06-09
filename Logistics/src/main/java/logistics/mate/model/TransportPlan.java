@@ -13,7 +13,7 @@ public class TransportPlan {
 	private long Id;
 	private long IncomeExpectation;
 	@OneToMany(mappedBy = "TransportPlan")
-	private List<Section> Section;
+	private List<Section> section;
 	
 	public long getId() {
 		return Id;
@@ -22,10 +22,10 @@ public class TransportPlan {
 		Id = id;
 	}
 	public List<Section> getSection() {
-		return Section;
+		return section;
 	}
 	public void setSection(List<Section> section) {
-		Section = section;
+		this.section = section;
 	}
 	public long getIncomeExpectation() {
 		return IncomeExpectation;

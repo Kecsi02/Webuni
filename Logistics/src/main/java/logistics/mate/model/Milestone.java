@@ -14,7 +14,7 @@ public class Milestone {
 	private long Id;
 	@ManyToOne
 	@JoinColumn(name = "AddressId")
-	private Address Address;
+	private Address address;
 	private LocalDateTime plannedTime;
 	public long getId() {
 		return Id;
@@ -23,10 +23,10 @@ public class Milestone {
 		Id = id;
 	}
 	public Address getAddress() {
-		return Address;
+		return address;
 	}
 	public void setAddress(Address address) {
-		Address = address;
+		this.address = address;
 	}
 	public LocalDateTime getPlannedTime() {
 		return plannedTime;
@@ -36,7 +36,7 @@ public class Milestone {
 	}
 	public Milestone(long Id, Address Address, LocalDateTime plannedTime) {
 		this.Id = Id;
-		this.Address = Address;
+		this.address = Address;
 		this.plannedTime = plannedTime;
 	}
 }
