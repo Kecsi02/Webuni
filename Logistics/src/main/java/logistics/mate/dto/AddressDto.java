@@ -1,12 +1,9 @@
 package logistics.mate.dto;
 
-import javax.persistence.GeneratedValue;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class AddressDto {
-	@javax.persistence.Id
-	@GeneratedValue
 	private long Id;
 	@NotEmpty
 	@Size(min=2, max=2)
@@ -32,25 +29,31 @@ public class AddressDto {
 		return ISO;
 	}
 	public void setISO(String iSO) {
-		ISO = iSO;
+		this.ISO = iSO;
 	}
 	public String getCity() {
 		return City;
 	}
 	public void setCity(String city) {
-		City = city;
+		this.City = city;
 	}
 	public String getStreet() {
 		return Street;
 	}
 	public void setStreet(String street) {
-		Street = street;
+		this.Street = street;
 	}
 	public String getZIP() {
 		return ZIP;
 	}
 	public void setZIP(String zIP) {
-		ZIP = zIP;
+		this.ZIP = zIP;
+	}
+	public String getNumber() {
+		return Number;
+	}
+	public void setNumber(String number) {
+		this.Number = number;
 	}
 	public double getWidth() {
 		return Width;
@@ -64,14 +67,14 @@ public class AddressDto {
 	public void setLength(double Length) {
 		this.Length = Length;
 	}
-	public AddressDto(long Id, String ISO, String City, String Street, String ZIP, String Number, double Width, double Length) {
+	public AddressDto(long Id, @NotEmpty String ISO, @NotEmpty String City, @NotEmpty String Street, @NotEmpty String ZIP, @NotEmpty String Number, Double Length, Double Width) {
 		this.Id = Id;
 		this.ISO = ISO;
 		this.City = City;
 		this.Street = Street;
 		this.ZIP = ZIP;
 		this.Number = Number;
-		this.Width = Width;
 		this.Length = Length;
+		this.Width = Width;
 	}
 }

@@ -7,6 +7,7 @@ import org.springframework.util.StringUtils;
 
 import javassist.tools.web.BadHttpRequest;
 import logistics.mate.repository.MilestoneRepository;
+import logistics.mate.dto.AddressExampleDto;
 import logistics.mate.model.Address;
 import logistics.mate.repository.AddressRepository;
 
@@ -52,16 +53,12 @@ public class AddressService {
 		}
 		return addressRepo.save(Address);
 	}
-	public Page<Address> AddressExample(AddressExampleDto Example, Pageable Pageable){
-		String ISO = Example.getISO();
+	public Page<Address> AddressExample(AddressExampleDto Example, org.springframework.data.domain.Pageable pageable){
 		String City = Example.getCity();
 		String Street = Example.getStreet();
 		String ZIP = Example.getZIP();
-		String Number = Example.getNumber();
+		String ISO = Example.getISO();
 		Specification<Address> specification = Specification.where(null);
-		if (StringUtils.hasText(ISO)) {
-			specification = specification.and(AddressSpecifications.hasISO(ISO));
-		}
 		if (StringUtils.hasText(City)) {
 			specification = specification.and(AddressSpecifications.hasCity(City));
 		}
@@ -71,6 +68,9 @@ public class AddressService {
 		if (StringUtils.hasText(ZIP)) {
 			specification = specification.and(AddressSpecifications.hasZIP(ZIP));
 		}
-		return addressRepo.findAll(specification, Pageable);
+		if (StringUtils.hasText(ISO)) {
+			specification = specification.and(AddressSpecifications.hasISO(ISO));
+		}
+		return addressRepo.findAll(specification, (org.springframework.data.domain.Pageable) pageable);
 	}
 }

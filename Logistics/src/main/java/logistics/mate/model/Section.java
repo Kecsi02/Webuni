@@ -49,7 +49,7 @@ public class Section {
 	@ManyToOne
 	@JoinColumn(name = "TransportPlan_Id")
 	private TransportPlan TransportPlan;
-	public Section(long Id, int number, TransportPlan TransportPlan, Milestone From, Milestone To) {
+	public Section(long Id,Milestone From, Milestone To, int number, TransportPlan TransportPlan) {
 		this.Id = Id;
 		this.number = number;
 		this.TransportPlan = TransportPlan;

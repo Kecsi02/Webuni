@@ -34,7 +34,9 @@ public class TransportPlan {
 		IncomeExpectation = incomeExpectation;
 	}
 	public TransportPlan(long Id, List<Section> Section, long IncomeExpectation) {
-		
+		this.Id = Id;
+		this.section = Section;
+		this.IncomeExpectation = IncomeExpectation;
 
 	}
 }

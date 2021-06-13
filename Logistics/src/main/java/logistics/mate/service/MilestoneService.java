@@ -18,7 +18,7 @@ public class MilestoneService {
 		return milestoneRepo.findAll();
 	}
 	public List<Milestone> findAddressId(long Id){
-		return milestoneRepo.findAddressId(Id);
+		return milestoneRepo.findByAddressId(Id);
 	}
 	public Optional<Milestone> findId(long Id){
 		return milestoneRepo.findById(Id);
@@ -29,7 +29,7 @@ public class MilestoneService {
 	}
 	@Transactional
 	public void deleteAll() {
-		getMilestones().stream().forEach(m - > m.setAddress(null));
+		getMilestones().stream().forEach(m -> m.setAddress(null));
 		milestoneRepo.deleteAll();
 	}
 }

@@ -66,14 +66,14 @@ public class Address {
 	public void setLength(double Length) {
 		this.Length = Length;
 	}
-	public Address(long Id, String ISO, String City, String Street, String ZIP, String Number, double Width, double Length) {
+	public Address(long Id, @NotEmpty String ISO, @NotEmpty String City, @NotEmpty String Street, @NotEmpty String ZIP, @NotEmpty String Number, Double Length, Double Width) {
 		this.Id = Id;
 		this.ISO = ISO;
 		this.City = City;
+		this.ZIP = ZIP;;
 		this.Street = Street;
-		this.ZIP = ZIP;
 		this.Number = Number;
+		this.Length= Length;
 		this.Width = Width;
-		this.Length = Length;
 	}
 }

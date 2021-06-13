@@ -22,18 +22,23 @@ public class SectionService {
 		return sectionRepo.findById(Id);
 	}
 	public Optional<Section> findMilestone(long milestoneId) {
-		return sectionRepo.findByMilestoneId(milestoneId);
+		return sectionRepo.findByMId(milestoneId);
 	}
-	public Optional<Section> findByTransportPlanId(long Id) {
-		return sectionRepo.findByTransportId(Id);
+	public List<Section> findByTransportPlanAndMilestone(long transportPlanId, long milestoneId) {
+		return sectionRepo.findByTPMS(transportPlanId, milestoneId);
 	}
-	public Optional<Section> findNumber(int Number) {
-		return sectionRepo.findByNumber(Number);
+	public Optional<Section> findByTPN(long Id, int number) {
+		return sectionRepo.findByTPN(Id, number);
+	}
+	@Transactional
+	public Section addSection(Section section) {
+		Section newSection = sectionRepo.save(section);
+		return newSection;
 	}
 	@Transactional
 	public void delete() {
-		getSections.stream().forEach(s->s.setFrom(null));
-		getSections.stream().forEach(s -> s.setTo(null));
+		getSections().stream().forEach(s->s.setFrom(null));
+		getSections().stream().forEach(s -> s.setTo(null));
 		sectionRepo.deleteAll();
 	}
 }
